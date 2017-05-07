@@ -1,0 +1,42 @@
+.container
+  h2 シナリオ編集
+  .form-horizontal
+    fieldset
+      legend シナリオ設定
+      .form-group
+        label.control-label.col-xs-3 シナリオID
+        .col-xs-3
+          input.form-control(type="text" id="id" name="id"
+                ng-model="$ctrl.scenario.id"
+                ng-init="$ctrl.scenario.id")
+      .form-group
+        label.control-label.col-xs-3 シナリオパターン
+        .col-xs-3
+          select.form-control(id="type" name="type"
+                 ng-model="$ctrl.scenario.type") 選択
+            option(value="1round-any" selected="selected") １往復型
+            option(value="1round-hand") １往復型（手タッチ）
+    fieldset
+      legend シナリオ内容
+      .form-group
+        label.control-label.col-xs-3 ロボット発話1
+        .col-xs-8
+          input.form-control(type="text" id="robot1" name="robot1"
+                ng-model="$ctrl.scenario.robot1"
+                ng-init="$ctrl.scenario.robot1")
+      .form-group
+        label.control-label.col-xs-3 相手の発話
+        .col-xs-8 （任意の発話を聞き取り)
+      .form-group
+        label.control-label.col-xs-3 ロボット発話2
+        .col-xs-8
+          input.form-control(type="text" id="robot2" name="robot2"
+                ng-model="$ctrl.scenario.robot2"
+                ng-init="$ctrl.scenario.robot2")
+      .form-group
+        .col-xs-offset-3.col-xs-9
+          ul.list-inline
+            li
+              button.btn.btn-primary(ng-click="$ctrl.updateScenario()") 更新
+            li
+              a.btn.btn-primary(href="/scenario") キャンセル

@@ -1,0 +1,59 @@
+.container
+  h2 シナリオ登録
+  .form-horizontal
+    fieldset
+      legend シナリオ設定
+      .form-group
+        label.control-label.col-xs-3 シナリオID
+        .col-xs-3
+          input.form-control(type="text" id="id" name="id"  
+                placeholder="gen-x" 
+                ng-model="$ctrl.scenario.id")
+      .form-group
+        label.control-label.col-xs-3 シナリオパターン
+        .col-xs-3
+          select.form-control(id="type" name="type"
+                 ng-model="$ctrl.scenario.type") 選択
+            option(value="1round-any" selected="selected") １往復型
+            option(value="1round-hand") １往復型（手タッチ）
+    fieldset
+      legend シナリオ内容
+      .form-group
+        label.control-label.col-xs-3 ロボット発話1
+        .col-xs-8
+          input.form-control(type="text" id="robot1" name="robot1" 
+                placeholder="(例)出身地はどこですか？"
+                ng-model="$ctrl.scenario.robot1")
+      .form-group
+        label.control-label.col-xs-3 相手の発話
+        .col-xs-8 （任意の発話を聞き取り)
+      .form-group
+        label.control-label.col-xs-3 ロボット発話2
+        .col-xs-8
+          input.form-control(type="text" id="robot2" name="robot2"
+                placeholder="(例)そうなんですね。ちなみに僕はフランス出身なんです。"
+                ng-model="$ctrl.scenario.robot2")
+      .form-group
+        .col-xs-offset-3.col-xs-9
+          button.btn.btn-primary(ng-click="$ctrl.createScenario()") 登録
+
+.container
+  h2 シナリオ一覧
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th.col-xs-1 シナリオID
+        th.col-xs-2 シナリオパターン
+        th.col-xs-4 ロボット発話1
+        th.col-xs-4 ロボット発話2
+        th.col-xs-1 
+    tbody
+      tr(ng:repeat="scenario in $ctrl.scenarios")
+        td.col-xs-1 {{ scenario.id }}
+        td.col-xs-2 {{ scenario.type }}
+        td.col-xs-4 {{ scenario.robot1 }}
+        td.col-xs-4 {{ scenario.robot2 }}
+        td.col-xs-1
+          a.btn.btn-xs(href="/scenario/edit/{{ scenario._id }}") 編集
+          a.btn.btn-xs(ng-click="$ctrl.deleteScenario(scenario)") 削除
+
